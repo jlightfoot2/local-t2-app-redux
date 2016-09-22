@@ -51,7 +51,7 @@ describe('actions', () => {
 
   });
 
-  it('it should check "isOnline" flow', () => {
+  it('it should check "isOnline" saga flow', () => {
     var onlineSaga = checkOnlineStatus();
     expect(onlineSaga.next().value).toEqual(call(delay, 20000));
     expect(onlineSaga.next().value).toEqual(put(appActions.checkIsOnline('timer')));
