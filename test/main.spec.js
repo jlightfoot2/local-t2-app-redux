@@ -1,4 +1,5 @@
-import {appReducer, appActions, appMiddleware, appSaga ,checkOnlineStatus} from '../lib';
+import {appReducer, appActions, appMiddleware, appSaga ,checkOnlineStatus, appComponents} from '../lib';
+import {UpdateDialogContainer} from '../lib/components';
 import { put, call, fork } from 'redux-saga/effects';
 import { delay } from 'redux-saga';
 import {combineReducers} from 'redux';
@@ -9,11 +10,12 @@ import {createStore, applyMiddleware, compose} from 'redux';
 import UpdateDialog from '../lib/components/UpdateDialog';
 import FlatButton from 'material-ui/FlatButton';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import Dialog from 'material-ui/Dialog';
+
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 injectTapEventPlugin();
+console.log(appComponents);
 require('jsdom-global')();
 
 describe('test bundle actions and reducers', () => {
@@ -82,6 +84,7 @@ describe('<UpdateDialog />', () => {
   let _wrapper;
 
   beforeEach(() => {
+    // Technically we don't need to include muiTheme for shallow render
     _wrapper = shallow(<UpdateDialog open={true} onClick={function(){}} message="test test" />, {context: {muiTheme: getMuiTheme(baseTheme) }});
   });
   const muiTheme = getMuiTheme();
@@ -93,5 +96,11 @@ describe('<UpdateDialog />', () => {
     expect(_wrapper.is('Dialog')).toEqual(true);
 
     
+  });
+});
+
+describe('Testing import short cuts', () => {
+  it('modules are the same', () => {
+    expect(UpdateDialogContainer).toEqual(appComponents.UpdateDialogContainer);   
   });
 });

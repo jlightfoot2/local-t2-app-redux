@@ -4,7 +4,7 @@ import FlatButton from 'material-ui/FlatButton';
 /**
  * Alerts user to updates
  */
-class AppDialog extends React.Component {
+class UpdateDialog extends React.Component {
 
   render () {
     var {open, onClick, message} = this.props;
@@ -29,4 +29,4 @@ class AppDialog extends React.Component {
   }
 }
 
-export default AppDialog;
+export default UpdateDialog;
