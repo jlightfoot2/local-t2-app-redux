@@ -2,20 +2,16 @@ require('babel-polyfill');
 import appReducer from './reducers';
 import appActions from './actions';
 import createSagaMiddleware from 'redux-saga';
-import { applyMiddleware } from 'redux';
+import { applyMiddleware, compose } from 'redux';
 import appSaga, {checkOnlineStatus} from './sagas';
-const appMiddleware = applyMiddleware(store => next => {
-  
-  store.run(rootSaga);
-
+const appMiddleware = store => next => {
   return action => {
     let result = next(action);
-    if (false) {
-      //next(windowResize(window.innerWidth, window.innerHeight));
-    }
+    //does nothing for now
     return result;
   };
-});
+};
+
 export {
   appReducer,
   appActions,

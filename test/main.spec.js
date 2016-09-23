@@ -3,10 +3,20 @@ import { put, call, fork } from 'redux-saga/effects';
 import { delay } from 'redux-saga';
 import {combineReducers} from 'redux';
 import expect from 'expect'; // You can use any testing library
-
+import React from 'react';
+import { mount, shallow } from 'enzyme';
 import {createStore, applyMiddleware, compose} from 'redux';
+import UpdateDialog from '../lib/components/UpdateDialog';
+import FlatButton from 'material-ui/FlatButton';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import Dialog from 'material-ui/Dialog';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
+injectTapEventPlugin();
+require('jsdom-global')();
 
-describe('actions', () => {
+describe('test bundle actions and reducers', () => {
   it('should be able to set cache status to true or false', () => {
     var lastState;
 
@@ -50,12 +60,38 @@ describe('actions', () => {
     expect(lastState.updates.userNotified).toBe(false);
 
   });
+});
 
+describe('Testing bundle saga generators and such', () => {
   it('it should check "isOnline" saga flow', () => {
     var onlineSaga = checkOnlineStatus();
     expect(onlineSaga.next().value).toEqual(call(delay, 20000));
     expect(onlineSaga.next().value).toEqual(put(appActions.checkIsOnline('timer')));
     expect(onlineSaga.next().value).toEqual(call(delay, 20000));// this check should start over infinitely
   });
+});
 
+/**
+ * Know issues below make material ui components difficult to test. 
+ * Just leaving stub here as a bookmark
+ */
+// Material-UI Example https://github.com/callemall/material-ui/blob/master/src/Avatar/Avatar.spec.js
+// https://github.com/callemall/material-ui/issues/4664
+// https://github.com/callemall/material-ui/issues/4021
+describe('<UpdateDialog />', () => {
+  let _wrapper;
+
+  beforeEach(() => {
+    _wrapper = shallow(<UpdateDialog open={true} onClick={function(){}} message="test test" />, {context: {muiTheme: getMuiTheme(baseTheme) }});
+  });
+  const muiTheme = getMuiTheme();
+
+ 
+  it('pending description', () => {
+
+    expect(_wrapper).toBeTruthy();
+    expect(_wrapper.is('Dialog')).toEqual(true);
+
+    
+  });
 });
