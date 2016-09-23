@@ -2,9 +2,9 @@ require('babel-polyfill');
 import appReducer from './reducers';
 import appActions from './actions';
 import createSagaMiddleware from 'redux-saga';
-//sagaMiddleware.run(sagaRoot);
+import { applyMiddleware } from 'redux';
 import appSaga, {checkOnlineStatus} from './sagas';
-const appMiddleware = store => next => {
+const appMiddleware = applyMiddleware(store => next => {
   
   store.run(rootSaga);
 
@@ -15,8 +15,7 @@ const appMiddleware = store => next => {
     }
     return result;
   };
-};
-
+});
 export {
   appReducer,
   appActions,

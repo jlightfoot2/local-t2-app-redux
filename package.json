@@ -1,6 +1,6 @@
 {
   "name": "local-t2-app-redux",
-  "version": "0.0.6",
+  "version": "0.0.8",
   "description": "Manages app update flow and app status information",
   "main": "./lib/",
   "scripts": {
@@ -16,6 +16,7 @@
   "author": "t2",
   "license": "ISC",
   "dependencies": {
+    "is-online": "^5.1.2",
     "redux": "^3.6.0",
     "redux-saga": "^0.11.0",
     "redux-thunk": "^2.1.0"

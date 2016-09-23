@@ -4,6 +4,7 @@ export const CACHE_STATUS_CHANGE = 'T2/T2CACHE_STATUS_CHANGE';
 export const CONNECTIVITY_CHANGE = 'T2/CONNECTIVITY_CHANGE';
 export const CONNECTIVITY_CHECK_START = 'T2/CONNECTIVITY_CHECK_START';
 export const CONNECTIVITY_CHECK_END = 'T2/CONNECTIVITY_CHECK_END';
+import isOnline from 'is-online';
 
 export const cacheStatusChange = (isReady) => {
   return {
