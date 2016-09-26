@@ -1,5 +1,5 @@
 import {appReducer, appActions, appMiddleware, appSaga ,checkOnlineStatus, appComponents} from '../lib';
-import {UpdateDialogContainer} from '../lib/components';
+import {UpdateDialogContainer, AppStatusContainer} from '../lib/components';
 import { put, call, fork } from 'redux-saga/effects';
 import { delay } from 'redux-saga';
 import {combineReducers} from 'redux';
@@ -14,8 +14,7 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
-injectTapEventPlugin();
-console.log(appComponents);
+
 require('jsdom-global')();
 
 describe('test bundle actions and reducers', () => {
@@ -100,7 +99,8 @@ describe('<UpdateDialog />', () => {
 });
 
 describe('Testing import short cuts', () => {
-  it('modules are the same', () => {
-    expect(UpdateDialogContainer).toEqual(appComponents.UpdateDialogContainer);   
+  it('modules are the same regardless of how referenced', () => {
+    expect(UpdateDialogContainer).toEqual(appComponents.UpdateDialogContainer);  
+    expect(AppStatusContainer).toEqual(appComponents.AppStatusContainer); 
   });
 });

@@ -1,7 +1,12 @@
 import UpdateDialogContainer from './UpdateDialogContainer';
+import AppStatusContainer from './AppStatusContainer';
+
 export {
-  UpdateDialogContainer
+  UpdateDialogContainer,
+  AppStatusContainer
 };
+
 export default {
-  UpdateDialogContainer
+  UpdateDialogContainer,
+  AppStatusContainer
 };
