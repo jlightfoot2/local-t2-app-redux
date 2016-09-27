@@ -14,6 +14,7 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
+import {registerPromise} from '../lib/lib/serviceWorker';
 
 require('jsdom-global')();
 
@@ -43,10 +44,10 @@ describe('test bundle actions and reducers', () => {
   it('should be able be able to store update availability status', () => {
     var lastState;
 
-    lastState = appReducer(lastState, appActions.updatesAvailable(true));
+    lastState = appReducer(lastState, appActions.updatesAvailable(true,'test1'));
     expect(lastState.updates.available).toBe(true);
 
-    lastState = appReducer(lastState, appActions.updatesAvailable(false));
+    lastState = appReducer(lastState, appActions.updatesAvailable(false,'test2'));
     expect(lastState.updates.available).toBe(false);
 
   });
@@ -102,5 +103,11 @@ describe('Testing import short cuts', () => {
   it('modules are the same regardless of how referenced', () => {
     expect(UpdateDialogContainer).toEqual(appComponents.UpdateDialogContainer);  
     expect(AppStatusContainer).toEqual(appComponents.AppStatusContainer); 
+  });
+});
+
+describe('Tesing Service worker promise', () => {
+  it('tests the service worker thingy', () => {
+
   });
 });

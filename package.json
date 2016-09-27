@@ -1,6 +1,6 @@
 {
   "name": "local-t2-app-redux",
-  "version": "0.0.18",
+  "version": "0.0.29",
   "description": "Manages app update flow and app status information",
   "main": "./lib/",
   "scripts": {

@@ -18,10 +18,11 @@ export const connectivityChange = (status) => {
     status
   };
 };
-export const updatesAvailable = (available) => {
+export const updatesAvailable = (available, meta = '') => {
   return {
     type: UPDATES_AVAILABLE,
-    available
+    available,
+    meta
   };
 };
 

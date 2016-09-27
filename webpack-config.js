@@ -17,6 +17,10 @@ const config = {
     filename: 'index.js' // Name of output file
   },
   plugins: [
+    // http://dev.topheman.com/make-your-react-production-minified-version-with-webpack/
+    new webpack.DefinePlugin({
+      '__DEVTOOLS__': false
+    }),
   /*
     new webpack.optimize.UglifyJsPlugin({
       compress: {

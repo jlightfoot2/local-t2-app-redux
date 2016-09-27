@@ -2,7 +2,7 @@ import UpdateDialog from './UpdateDialog';
 import { connect } from 'react-redux';
 import React from 'react';
 
-import {updateUserNotified} from '../actions';
+import {updateUserNotified, updatesAvailable} from '../actions';
 
 const stateToProps = (state, ownProps) => {
   return {
@@ -15,6 +15,7 @@ const stateToDispatch = (dispatch, ownProps) => {
   return {
     onClick: () => {
       dispatch(updateUserNotified(true));
+      dispatch(updatesAvailable(false,'user dialog click'));
       setTimeout(function () {
         window.location.reload();
       }, 1000);

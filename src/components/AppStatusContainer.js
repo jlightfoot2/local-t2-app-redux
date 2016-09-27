@@ -12,9 +12,11 @@ class AppStatusContainer extends React.Component {
     return (
         <div>
            <h3>local-t2-app-reduxt Status</h3>
-           <div>Migration# {migrations}</div>
+           <div>Migration Version# {migrations.version}</div>
            <div>
-            {JSON.stringify(app)}
+             <pre>
+                {JSON.stringify(app, undefined, 3)}
+             </pre>
            </div>
         </div>
     );
@@ -28,9 +30,4 @@ const stateToProps = (state, ownProps) => {
   }
 }
 
-const dispatchToProps = (dispatch) => {
-  return {
-  }
-}
-
-export default connect(stateToProps, dispatchToProps)(AppStatusContainer);
+export default connect(stateToProps)(AppStatusContainer);
