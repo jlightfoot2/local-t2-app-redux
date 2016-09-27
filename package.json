@@ -4,7 +4,7 @@
   "description": "Manages app update flow and app status information",
   "main": "./lib/",
   "scripts": {
-    "test": "mocha --compilers js:babel-register --require babel-polyfill --recursive",
+    "test": "./node_modules/.bin/mocha --compilers js:babel-register --require babel-polyfill --recursive",
     "test:watch": "npm test -- --watch",
     "build": "babel src -d lib"
   },
@@ -30,6 +30,7 @@
     "babel-cli": "^6.14.0",
     "babel-core": "^6.3.26",
     "babel-loader": "^6.2.4",
+    "babel-plugin-defines": "^3.2.0",
     "babel-plugin-transform-object-rest-spread": "^6.8.0",
     "babel-polyfill": "^6.13.0",
     "babel-preset-es2015": "^6.3.13",

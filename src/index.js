@@ -2,10 +2,11 @@ require('babel-polyfill');
 import appReducer from './reducers';
 import appActions from './actions';
 import appComponents from './components';
-import serviceWorker from './lib/serviceWorker';
+
 import createSagaMiddleware from 'redux-saga';
 import { applyMiddleware, compose } from 'redux';
 import appSaga, {checkOnlineStatus} from './sagas';
+import {registerPromise} from './lib/serviceWorker';
 const appMiddleware = store => next => {
   return action => {
     let result = next(action);
@@ -21,7 +22,7 @@ export {
   appSaga,
   checkOnlineStatus,
   appComponents,
-  serviceWorker
+  registerPromise
 };
 
 export default {
@@ -31,5 +32,5 @@ export default {
   appSaga,
   checkOnlineStatus,
   appComponents,
-  serviceWorker
+  registerPromise
 };

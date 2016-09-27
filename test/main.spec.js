@@ -1,4 +1,4 @@
-import {appReducer, appActions, appMiddleware, appSaga ,checkOnlineStatus, appComponents} from '../lib';
+import {appReducer, appActions, appMiddleware, appSaga ,checkOnlineStatus, appComponents, registerPromise} from '../lib';
 import {UpdateDialogContainer, AppStatusContainer} from '../lib/components';
 import { put, call, fork } from 'redux-saga/effects';
 import { delay } from 'redux-saga';
@@ -14,7 +14,6 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
-import {registerPromise} from '../lib/lib/serviceWorker';
 
 require('jsdom-global')();
 
@@ -106,8 +105,22 @@ describe('Testing import short cuts', () => {
   });
 });
 
-describe('Tesing Service worker promise', () => {
-  it('tests the service worker thingy', () => {
-
+describe('Tesing Service worker promise', function(){
+  var callCount = 0
+  it('tests service work promise ', function() {
+      this.timeout(5000);
+      var compareVal = {test: 'asdfae8303'};
+      var testPromise = new Promise(function(resolve){
+          resolve(compareVal);
+      });
+      var storeMock = {
+        dispatch: function(){}
+      }
+      return registerPromise(testPromise, storeMock).then(function(result){
+        expect(result).toBe(compareVal);
+        expect(result.onupdatefound).toExist();
+        expect(result.onupdatefound).toBe(compareVal.onupdatefound);
+        return result;
+      });
   });
 });
