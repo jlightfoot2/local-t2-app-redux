@@ -1,6 +1,6 @@
 {
   "name": "local-t2-app-redux",
-  "version": "0.0.29",
+  "version": "0.0.31",
   "description": "Manages app update flow and app status information",
   "main": "./lib/",
   "scripts": {
@@ -9,9 +9,10 @@
     "build": "babel src -d lib"
   },
   "keywords": [
-    "rwd",
-    "responsive",
-    "redux"
+    "service worker",
+    "cache",
+    "redux",
+    "experimental"
   ],
   "author": "t2",
   "license": "ISC",
